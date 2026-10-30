@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useState } from "react";
 import "./App.css";
 
-const API = "http://127.0.0.1:8000";
+const API = "https://mdc-aiml.onrender.com";
 const blank = { name:"", category:"Grocery", sku:"", stock:"", unit:"units", expiry:"", demand:"", cost:"" };
 
 function riskOf(p) {
@@ -86,13 +86,13 @@ const expiryAlerts = items
       if (!r.ok) throw new Error(`Server returned ${r.status}`);
       setItems(await r.json());
     } catch(e) {
-      setError("Cannot connect to backend. Start FastAPI at http://127.0.0.1:8000.");
+      setError("Cannot connect to backend. Start FastAPI at https://mdc-aiml.onrender.com.");
       console.error(e);
     } finally { setLoading(false); }
   }
   useEffect(() => { load(); }, []);
   useEffect(() => {
-  fetch("http://127.0.0.1:8000/ml-forecast")
+  fetch("https://mdc-aiml.onrender.com/ml-forecast")
     .then((res) => {
       if (!res.ok) throw new Error("Could not load ML predictions");
       return res.json();
